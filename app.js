@@ -5,18 +5,9 @@ function agregarAmigo(){
     //Obtenemos el valor del campo de texto
     let nombre = document.getElementById('amigo').value;
     //identificamos la etiqueta de HTML
-    let listaAmigos = document.getElementById('listaAmigos');
-
     if (nombre.length != 0){
-        //Anadimos a la lista de elementos 
-        misContactos.push(nombre);
-        console.log(misContactos);
-
-        //Agregamos los nombres a la pantalla
-        let agregarAmigo = document.createElement('li');
-        agregarAmigo.textContent = nombre;
-        listaAmigos.appendChild(agregarAmigo);
-
+        // Agregamos tanto a misContactos como a la pantalla
+        agregarContactoPantalla(nombre);
         //limpiamos el campos despues de presionar el boton
         document.getElementById('amigo').value = '';
     }else{
@@ -24,13 +15,36 @@ function agregarAmigo(){
     }
 }
 
+function agregarContactoPantalla(nombre){
+    let listaAmigos = document.getElementById('listaAmigos');
+    //Anadimos a la lista de elementos 
+    misContactos.push(nombre);
+    console.log(misContactos);
+    //Agregamos los nombres a la pantalla
+    let agregarAmigo = document.createElement('li');
+    agregarAmigo.textContent = nombre;
+    listaAmigos.appendChild(agregarAmigo);
+}
+
 function sortearAmigo(){
+    // identifica el elemento HTML para mostrar mensaje
     let resultadoMensaje = document.getElementById('resultado');
+    let amigoSorteado = generarAmigoSecreto();
+    // Mostramos resultado de amigo secreto
+    resultadoMensaje.innerHTML = `El amigo sorteado es ${amigoSorteado}.`;
+    // limpiamos lista
+    limpiarLista();
+}
+
+function generarAmigoSecreto(){
+    //Generamos numero aleatorio apartir de la misContactos
     let indiceAleatorio = Math.floor(Math.random()*misContactos.length);
     let amigoSorteado = misContactos[indiceAleatorio];
-    
-    resultadoMensaje.innerHTML = `El amigo sorteado es ${amigoSorteado}.`;
-    
+    return amigoSorteado;
+}
+
+function limpiarLista(){
+    //Limpiamos la pantalla usando un bucleOrganizaci[on]
     let listaAmigos = document.getElementById('listaAmigos');
     while (listaAmigos.firstChild) {
         listaAmigos.removeChild(listaAmigos.firstChild);
