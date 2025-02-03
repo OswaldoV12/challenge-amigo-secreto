@@ -27,27 +27,34 @@ function agregarContactoPantalla(nombre){
 }
 
 function sortearAmigo(){
-    // identifica el elemento HTML para mostrar mensaje
-    let resultadoMensaje = document.getElementById('resultado');
-    let amigoSorteado = generarAmigoSecreto();
-    // Mostramos resultado de amigo secreto
-    resultadoMensaje.innerHTML = `El amigo sorteado es ${amigoSorteado}.`;
-    // limpiamos lista
-    limpiarLista();
+    if(misContactos.length != 0){
+        // identifica el elemento HTML para mostrar mensaje
+        let resultadoMensaje = document.getElementById('resultado');
+        let amigoSorteado = generarAmigoSecreto();
+        // Mostramos resultado de amigo secreto
+        resultadoMensaje.innerHTML = `El amigo sorteado es ${amigoSorteado}.`;
+        // limpiamos lista
+        limpiarListas();
+    }else{
+        alert('No hay amigos en la lista');
+    }
 }
 
 function generarAmigoSecreto(){
     //Generamos numero aleatorio apartir de la misContactos
     let indiceAleatorio = Math.floor(Math.random()*misContactos.length);
     let amigoSorteado = misContactos[indiceAleatorio];
+    //Regresamos el usuario aleatorio
     return amigoSorteado;
 }
 
-function limpiarLista(){
+function limpiarListas(){
     //Limpiamos la pantalla usando un bucleOrganizaci[on]
     let listaAmigos = document.getElementById('listaAmigos');
     while (listaAmigos.firstChild) {
         listaAmigos.removeChild(listaAmigos.firstChild);
     }
+    //limpiamos la lista de amigos
+    misContactos = [];
 }
 
