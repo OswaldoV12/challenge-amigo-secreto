@@ -11,7 +11,7 @@ function agregarAmigo(){
         //limpiamos el campos despues de presionar el boton
         document.getElementById('amigo').value = '';
     }else{
-        alert('Ingrese un nombre valido, no se permite el ingreso de vacio');
+        alert('Ingrese un nombre valido, no se permite el ingreso de nombres vacios');
     }
 }
 
